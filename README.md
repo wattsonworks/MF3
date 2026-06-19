@@ -1,35 +1,28 @@
 # מיכל פיטנס סטודיו — Michal Fitness Studio
 
-A modern, multi-page marketing site for **Michal Fitness Studio**, a women's fitness
-studio in Safed (קניון שערי העיר, הגדוד השלישי, צפת). Hebrew, RTL, mobile-first.
+Awwwards-level marketing site for **Michal Fitness Studio**, a women's fitness studio in
+Safed (קניון שערי העיר, הגדוד השלישי, צפת). Hebrew, RTL, mobile-first.
 
-Built to replace the old single-scroll "digital business card" at
-`keter-card.co.il/michal-fitness-studio/` with a real, conversion-focused website.
+**v2 — "Atelier" redesign:** a single immersive long-scroll experience (Ethos-inspired, but
+warmer and more feminine). Editorial fashion-meets-fitness — oversized Hebrew serif headlines,
+Space Grotesk micro-labels, full-bleed photography, infinite marquee, a cursor-following class
+hover-list, count-up stats, a full-screen overlay menu, and refined scroll motion.
 
-## Pages
-| File | עמוד |
-|------|------|
-| `index.html` | בית — hero, about, classes teaser, why-us, trial offer, reviews, location |
-| `classes.html` | השיעורים — all 7 class types in detail |
-| `schedule.html` | לוח אימונים — how to book via Boost + app download |
-| `pricing.html` | מחירון — intro offers + full monthly ladder (259–739₪) |
-| `gallery.html` | גלריה — photo masonry (lightbox) + testimonials |
-| `faq.html` | שאלות ותשובות — accordion + FAQPage schema |
-| `contact.html` | צרי קשר — map, directions, click-to-call, vCard |
+## Structure
+- `index.html` — the whole experience (hero · marquee · 01 הסטודיו · 02 השיעורים · stats · 03 מחירון · 04 גלריה · המלצות · 05 צרי קשר · footer)
+- `assets/css/app.css` — design system + all sections
+- `assets/js/app.js` — nav states, overlay menu, reveals, class hover-preview, count-up, parallax, lightbox
+- `assets/img/` — 30 studio photos + logo + reviews
+- `michal-fitness.vcf` — downloadable contact card
 
-## Stack
-Static HTML/CSS/JS — no build step. Google Fonts (Heebo + Assistant).
-SEO: per-page meta, Open Graph, `HealthClub` + `FAQPage` JSON-LD, Google Maps embed.
+## Design tokens
+- **Type:** Frank Ruhl Libre (Hebrew serif display) · Assistant (Hebrew body) · Space Grotesk (Latin labels/numbers)
+- **Palette:** warm paper `#f7efe8` · deep wine `#2a141d` · brand rose `#e0467a` · gold `#d99f63`
 
-## Key business data
-- **Phone / WhatsApp:** 054-344-9212 / wa.me/972543449212
-- **Instagram:** @michal_fitness_studio · **Facebook:** /m.r.f.077
-- **Booking:** Boost app (boostapp.co.il)
-- **Pricing (per official June-2026 flyer):** single trial 50₪ · trial card 119₪ (3 entries / 2 weeks) · monthly 259/379/469/559/649/739₪ for 1–6×/week
+## Business data
+- Phone / WhatsApp: 054-344-9212 · Instagram @michal_fitness_studio · Facebook /m.r.f.077
+- Booking: Boost app · Pricing (June-2026 flyer): single trial 50₪ · trial card 119₪ (3 entries / 2 weeks) · monthly 259/379/469/559/649/739₪ for 1–6×/week
 
-## Deploy (GitHub Pages)
-```
-git push -u origin main
-# then enable Pages: Settings → Pages → Deploy from branch → main / root
-```
-Live URL: https://wattsonworks.github.io/MF/
+## Deploy
+GitHub Pages from `main` / root → https://wattsonworks.github.io/MF/
+Rollback point for the previous multi-page version: tag `restore-pre-redesign-2026-06-19`.
