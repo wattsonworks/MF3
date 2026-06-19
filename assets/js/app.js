@@ -213,6 +213,42 @@
     }
   }
 
+  /* ---- preloader: tap or scroll to skip ---- */
+  (function () {
+    function skip() { document.body.classList.add("loaded"); }
+    var pl = document.getElementById("preloader");
+    if (pl) pl.addEventListener("click", skip);
+    window.addEventListener("scroll", skip, { once: true, passive: true });
+  })();
+
+  /* ---- marquee reacts to scroll velocity ---- */
+  if (!reduce) {
+    var mq = document.querySelector(".marquee");
+    if (mq) {
+      var mly = window.scrollY, mv = 0;
+      (function mtick() {
+        var y = window.scrollY; mv += ((y - mly) - mv) * 0.15; mly = y; mv *= 0.9;
+        var sk = Math.max(-5, Math.min(5, mv * 0.3));
+        mq.style.transform = "skewX(" + sk.toFixed(2) + "deg)";
+        requestAnimationFrame(mtick);
+      })();
+    }
+  }
+
+  /* ---- contextual cursor labels ---- */
+  if (fine && !reduce) {
+    var curEl = document.getElementById("cursor");
+    if (curEl) {
+      var lbl = document.createElement("span"); lbl.className = "cursor__label"; curEl.appendChild(lbl);
+      document.addEventListener("mouseover", function (e) {
+        var t = e.target.closest ? e.target.closest(".cl-row,.gal") : null;
+        if (t && t.classList.contains("cl-row")) { curEl.classList.add("labeled"); lbl.textContent = "צפי ↗"; }
+        else if (t) { curEl.classList.add("labeled"); lbl.textContent = "גררי"; }
+        else { curEl.classList.remove("labeled"); }
+      });
+    }
+  }
+
   /* ---- footer year ---- */
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
 })();
