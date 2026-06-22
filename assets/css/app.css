@@ -599,3 +599,30 @@ body.sched-open .sched{transform:translateX(0);visibility:visible;transition:tra
   letter-spacing:.08em;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .2s;white-space:nowrap;pointer-events:none}
 .cursor.labeled{mix-blend-mode:normal;background:var(--rose);border-color:var(--rose);width:76px;height:76px}
 .cursor.labeled .cursor__label{opacity:1}
+
+/* ===== STUDIO IN MOTION (reels) ===== */
+.reels__head{max-width:60ch;margin-bottom:clamp(2rem,5vw,3.4rem)}
+.reels__grid{display:grid;gap:clamp(1.1rem,2.6vw,1.9rem);grid-template-columns:1fr}
+.reel{margin:0}
+.reel__frame{position:relative;overflow:hidden;border-radius:20px;aspect-ratio:16/9;background:#120a0e;
+  box-shadow:0 24px 60px rgba(42,20,29,.55);border:1px solid rgba(255,255,255,.08)}
+#reels{border-top:1px solid rgba(243,198,208,.12)}
+.reel__frame video{width:100%;height:100%;object-fit:cover;display:block}
+.reel--lg .reel__frame{aspect-ratio:9/16}
+.reel__tag{position:absolute;inset-block-end:.7rem;inset-inline-start:.7rem;z-index:2;font-family:var(--mono);
+  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:.36em .8em;border-radius:999px;
+  background:rgba(20,10,14,.5);color:#fff;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.reel figcaption{margin-top:.9rem}
+.reel figcaption b{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,2.4vw,1.55rem);display:block;margin-bottom:.3rem}
+.reel figcaption span{display:block;color:var(--blush);opacity:.82;font-size:.86rem;line-height:1.55;max-width:44ch}
+@media(min-width:860px){
+  .reels__grid{grid-template-columns:minmax(280px,360px) 1fr;align-items:start}
+  .reel--lg{grid-row:span 2}
+}
+@media(max-width:859px){ .reel--lg{max-width:340px;margin-inline:auto} }
+/* under reduced-motion the reels get native controls — keep the corner tag off the control bar */
+@media(prefers-reduced-motion:reduce){ .reel__tag{display:none} }
+
+/* ===== visible keyboard focus (WCAG 2.4.7) — was missing site-wide ===== */
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+.dark :focus-visible,.hero :focus-visible,.etabs :focus-visible,.sched :focus-visible{outline-color:var(--blush)}

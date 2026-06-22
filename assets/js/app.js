@@ -501,6 +501,25 @@
     setInterval(render, 60000); // keep "now/next" + dot fresh
   })();
 
+  /* ---- studio reels: autoplay muted loops, play in view / pause out, reduced-motion safe ---- */
+  (function () {
+    var reels = document.querySelectorAll("[data-reel]");
+    if (!reels.length) return;
+    if (reduce) { // honour reduced-motion: don't autoplay, give the user manual controls
+      reels.forEach(function (v) { v.setAttribute("controls", ""); });
+      return;
+    }
+    var play = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (e) { if (e.isIntersecting) play(e.target); else e.target.pause(); });
+      }, { threshold: 0.25 });
+      reels.forEach(function (v) { io.observe(v); });
+    } else {
+      reels.forEach(play);
+    }
+  })();
+
   /* ---- footer year ---- */
   var yr = document.getElementById("yr"); if (yr) yr.textContent = new Date().getFullYear();
 })();
